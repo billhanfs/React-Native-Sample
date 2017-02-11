@@ -5,30 +5,32 @@
  */
 
 import React, { Component } from 'react';
-import { AppRegistry, ListView, Text, View } from 'react-native';
+import { View, Text, Navigator } from 'react-native';
 
-class ListViewBasics extends Component {
-  // Initialize the hardcoded data
-  constructor(props) {
-    super(props);
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian', 'Julie', 'Devin'
-      ])
+export default class MyScene extends Component {
+  static get defaultProps() {
+    return {
+      title: 'MyScene'
     };
   }
+
   render() {
     return (
-      <View style={{flex: 1, paddingTop: 22}}>
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text>{rowData}</Text>}
-        />
+      <View>
+        <Text>Hi! My name is {this.props.title}.</Text>
       </View>
-    );
+    )
   }
 }
 
-// App registration and rendering
-AppRegistry.registerComponent('ListViewBasics', () => ListViewBasics);
+import MyScene from './MyScene';
+
+class YoDawgApp extends Component {
+  render() {
+    return (
+      <MyScene />
+    )
+  }
+}
+
+AppRegistry.registerComponent('YoDawgApp', () => YoDawgApp);
